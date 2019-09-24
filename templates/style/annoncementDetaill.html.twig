@@ -15,6 +15,7 @@
         <h1>Hello {{ controller_name }}! ✅</h1>
         {{ dump(annonces) }}
         {% for id  in annonces %}
+
         {{ id.id }} <br/>
         {{ id.title }} <br/>
         {{ id.content }} <br/>
@@ -24,6 +25,8 @@
         <br/>
         <br/>
         {% endfor %}
+        <a href="{{ path('home') }}">go home</a>
+
         <ul>
             <li>Your controller at <code><a href="{{ 'C:/Users/sara/sara/src/Controller/AnnoncementControllerDetail.php'|file_link(0) }}">src/Controller/AnnoncementControllerDetail.php</a></code></li>
             <li>Your template at <code><a href="{{ 'C:/Users/sara/sara/templates/style/annoncementDetaill.html.twig'|file_link(0) }}">templates/style/annoncementDetaill.html.twig</a></code></li>

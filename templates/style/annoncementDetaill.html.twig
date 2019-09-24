@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Hello homeController!{% endblock %}
+
+
+{% block body %}
+
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <div class="example-wrapper">
+        <h1>Hello {{ controller_name }}! ✅</h1>
+        {{ dump(annonces) }}
+        {% for id  in annonces %}
+        {{ id.id }} <br/>
+        {{ id.title }} <br/>
+        {{ id.content }} <br/>
+        {{ id.price }} <br/>
+        {{ id.createDate | date('d/m/Y')}} <br/>
+            <a href="{{ path('detail', {id: id.id}) }}">aller vers liste</a>
+        <br/>
+        <br/>
+        {% endfor %}
+        <ul>
+            <li>Your controller at <code><a href="{{ 'C:/Users/sara/sara/src/Controller/AnnoncementControllerDetail.php'|file_link(0) }}">src/Controller/AnnoncementControllerDetail.php</a></code></li>
+            <li>Your template at <code><a href="{{ 'C:/Users/sara/sara/templates/style/annoncementDetaill.html.twig'|file_link(0) }}">templates/style/annoncementDetaill.html.twig</a></code></li>
+        </ul>
+    </div>
+{% endblock %}

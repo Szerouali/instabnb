@@ -26,7 +26,7 @@ class AnnoncementControllerAdd extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-    dump($add);die;
+
             return $this->redirectToRoute('home');
         }
 

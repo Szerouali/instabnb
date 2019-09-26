@@ -9,22 +9,18 @@
 
     <div class="example-wrapper">
         <h1>Hello {{ controller_name }}! ✅</h1>
-        {% for id  in annonces %}
+        {% for tableau  in tableau %}
 
-        {{ id.id }} <br/>
-        {{ id.title }} <br/>
-        {{ id.content }} <br/>
-        {{ id.price }} <br/>
-        {{ id.createDate | date('d/m/Y')}} <br/>
-            <a href="{{ path('detail', {id: id.id}) }}">aller vers liste</a>
+        {{ tableau.id }} <br/>
+        {{ tableau.title }} <br/>
+        {{ tableau.content }} <br/>
+        {{ tableau.price }} <br/>
+        <br/>
+            <a href="{{ path('detail', {id: tableau.id}) }}">aller vers liste</a>
         <br/>
         <br/>
         {% endfor %}
         <a href="{{ path('home') }}">go home</a>
 
-        <ul>
-            <li>Your controller at <code><a href="{{ 'C:/Users/sara/sara/src/Controller/AnnoncementControllerDetail.php'|file_link(0) }}">src/Controller/AnnoncementControllerDetail.php</a></code></li>
-            <li>Your template at <code><a href="{{ 'C:/Users/sara/sara/templates/style/annoncementDetaill.html.twig'|file_link(0) }}">templates/style/annoncementDetaill.html.twig</a></code></li>
-        </ul>
     </div>
 {% endblock %}

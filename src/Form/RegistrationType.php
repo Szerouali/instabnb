@@ -18,10 +18,12 @@ class RegistrationType extends AbstractType
             ->add('firstName')
             ->add('lastName')
             ->add('email',RepeatedType::class,[
-                'type'=>EmailType::class
+                'type'=>EmailType::class, 'first_options'=>['label'=> 'ton email'],
+                'second_options'=>['label'=> 'confirme ton email']
             ])
             ->add('password', RepeatedType::class,[
-                'type'=>PasswordType::class
+                'type'=>PasswordType::class, 'first_options'=>['label'=>'ton mdp'],
+                'second_options'=>['label'=>'confirme ton mdp']
             ])
         ;
     }

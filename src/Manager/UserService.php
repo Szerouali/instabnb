@@ -7,28 +7,39 @@ namespace App\Manager;
 use App\Entity\User;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Core\Tests\Encoder\UserPasswordEncoderTest;
 
-
-class UserManager
+class UserService
 {
     /**
-     * @var UserPasswordEncoderTest
+     * @var ObjectManager
+     */
+    private $objectManager;
+
+    /**
+     * @var UserPasswordEncoderInterface
      */
     private $passwordEncoder;
-    private $manager;
 
-    public function __construct(UserPasswordEncoderInterface     $passwordEncoder, ObjectManager $manager)
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder, ObjectManager $objectManager)
     {
         $this->passwordEncoder = $passwordEncoder;
-        $this->manager=$manager;
+        $this->objectManager = $objectManager;
+
     }
 
-    public function save(User $user) :void
-    {
-        $encodePassword= $this->passwordEncoder->encodePassword($user, $user->getPassword());
-        $user->setPassword($encodePassword);
+    public function save(User $user): void {
 
-        dump($encodePassword);die;
+        $encodedPassword = $this->passwordEncoder->encodePassword(
+            $user,
+            $user->getPassword()
+
+        );
+
+        $user->setPassword($encodedPassword);
+
+        $this->objectManager->persist($user);
+        $this->objectManager->flush();
+
     }
+
 }

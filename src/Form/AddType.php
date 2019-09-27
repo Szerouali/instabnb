@@ -18,9 +18,9 @@ class AddType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder -> add("title", TextType::class,['required'=> true] );
-        $builder -> add("price", MoneyType::class, ['required'=>Integer::class]);
-        $builder -> add("content",TextType::class, ['required'=> true]);
+        $builder -> add("title", TextType::class,['required'=> true, 'label' => 'tilte'] );
+        $builder -> add("price", MoneyType::class, ['required'=>true,  'label' => 'price']);
+        $builder -> add("content",TextType::class, ['required'=> true,  'label' => 'content']);
 
     }
     public function configureOptions(OptionsResolver $resolver)

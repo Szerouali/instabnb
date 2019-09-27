@@ -1,9 +1,11 @@
 <?php
 namespace App\Controller;
 
+use App\ContactService;
 use App\DTO\Add;
 use App\Entity\Annoncement;
 use App\Form\AddType;
+use App\Manager\UserManagerService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,8 +14,26 @@ use Symfony\Component\Routing\Annotation\Route;
 class AnnoncementControllerAdd extends AbstractController
 {
     /**
+     * @var UserManagerService
+     */
+    private $userManagerService;
+
+    /**
+     * AnnoncementControllerAdd constructor.
+     * @param UserManagerService $userManagerService
+     */
+
+    public function __construct(UserManagerService $userManagerService)
+    {
+        $this->userManagerService = $userManagerService;
+    }
+    /**
+     * @Route("/{_locale/add", name="add", requirements={"_locale"="fr|en"})
+     */
+    /**
+    /**
      * @Route(
-     *     "/add",
+     *     "/{_locale}/add",
      *     name="add",
      *     methods={"GET", "POST"},
 
@@ -27,14 +47,7 @@ class AnnoncementControllerAdd extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $a = new Annoncement($add);
-           // $a->setTitle($add->title);
-           // $a->setPrice($add->price);
-           // $a->setContent($add->content);
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($a);
-            $entityManager->flush();
-
+        $this->userManagerService->save($add);
             return $this->redirectToRoute('home');
         }
 
